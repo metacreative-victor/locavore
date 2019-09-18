@@ -30,9 +30,11 @@ if( !defined( 'ABSPATH' ) ) {
 							}
                             echo '<div class="post-item__text">';
                                 echo '<p class="title"><a href="' .esc_url( $vendor->get_shop_url() ). '">' .$vendor->get_shop_name(). '</a></p>';
+								echo '<p class="description">';
                                 if( !empty( $description ) ) {
-                                    echo wpautop( $description );
+									echo wp_trim_words( $description, 22, '...' );
                                 }
+								echo '</p>';
                                 echo '<a href="' .esc_url( $vendor->get_shop_url() ). '" class="button-primary">' .__('View', 'meta'). '</a>';
                             echo '</div>';
                         echo '</div><!-- .post-item -->';

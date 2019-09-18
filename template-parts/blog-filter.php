@@ -13,7 +13,7 @@ echo '<ul class="menu blog-filter">';
     if( !empty( $cat_1 ) ) {
         echo '<li class="' .$active_1. '"><a href="' .esc_url( get_term_link( $cat_1 ) ). '">' .$cat_1->name. '</a></li>';
     }
-    echo '<li class="' .$active_2. '"><a href="' .esc_url( get_post_type_archive_link('recipe') ). '">' .__('Recipes', 'meta'). '</a></li>';
+    /*echo '<li class="' .$active_2. '"><a href="' .esc_url( get_post_type_archive_link('recipe') ). '">' .__('Recipes', 'meta'). '</a></li>';*/
     if( !empty( $cat_2 ) ) {
         echo '<li class="' .$active_3. '"><a href="' .esc_url( get_term_link( $cat_2 ) ). '">' .$cat_2->name. '</a></li>';
     }

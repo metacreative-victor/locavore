@@ -92,12 +92,12 @@ function meta_upload_mimes( $mimes ) {
 add_filter( 'upload_mimes', 'meta_upload_mimes' );
 
 function sen_excerpt_length( $length ) {
-    return 20;
+    return 15;
 }
 add_filter( 'excerpt_length', 'sen_excerpt_length', 999 );
 
 function sen_excerpt_more( $more ) {
-    return '';
+    return '...';
 }
 add_filter( 'excerpt_more', 'sen_excerpt_more' );
 

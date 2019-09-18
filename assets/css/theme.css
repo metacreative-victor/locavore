@@ -1757,3 +1757,38 @@ section#featured-produce div.slide-item div.product-item div.description {
 section#featured-growers .post-item.inline .post-item__photo {
 	background-size: 100%;
 }
+
+section#featured-growers div.post-item__text p.description {
+	min-height: 170px;
+    padding: 20px 0;
+}
+
+section#news div.post-item__text p {
+	margin: 15px 0;
+}
+
+section#news div.post-item__text p.title {
+	margin: 0;
+	padding: 0;
+}
+
+div.post div.entry-content p {
+	line-height:150%;
+}
+
+div.post div.entry-content p a {
+	color: #668f66;
+}
+
+@media (max-width: 991px) {
+	.blog-header ul.menu.blog-filter {
+		margin-bottom: 25px;
+		position: relative;
+		top: auto;
+		right: auto;
+	}
+	.blog-header ul.menu.blog-filter > li {
+		margin-left: 0;
+		margin-right: 25px;
+	}
+}
