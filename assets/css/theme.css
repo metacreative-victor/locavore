@@ -1739,3 +1739,21 @@ form.searchform input[type="submit"] {
 }
 
 /* END EXTRA */
+
+/* Victor CSS */
+section#featured-produce div.slide-item div.product-item p.product-item-title {
+	min-height:50px;
+}
+
+section#featured-produce div.slide-item div.product-item div.description {
+	display: none; /* hide for now*/
+}
+
+.list-product .list-product__photo {
+	background-size: cover;
+	background-position: top center;
+}
+
+section#featured-growers .post-item.inline .post-item__photo {
+	background-size: 100%;
+}

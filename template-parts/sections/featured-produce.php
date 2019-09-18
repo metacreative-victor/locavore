@@ -6,7 +6,8 @@ if( !defined( 'ABSPATH' ) ) {
 $args = array();
 $args['post_type'] = 'product';
 $args['post_status'] = 'publish';
-$args['posts_per_page'] = -1;
+$args['posts_per_page'] = 12;
+$args['orderby'] = 'rand';
 
 $the_query = new WP_Query( $args );
 if( $the_query->have_posts() ) {

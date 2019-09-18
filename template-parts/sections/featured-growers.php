@@ -11,7 +11,7 @@ if( !defined( 'ABSPATH' ) ) {
             $vendors = dokan()->vendor->get_vendors( array(
                 'status' => 'approved',
                 'number' => 2,
-                'featured' => 'yes'
+                'featured' => 'yes',
             ));
 
             if( !empty( $vendors ) ) {
@@ -24,7 +24,10 @@ if( !defined( 'ABSPATH' ) ) {
                             if( !empty( $banner_id ) ) {
                                 $banner = wp_get_attachment_image_src( $banner_id, 'large' );
                                 echo '<div class="post-item__photo" style="background-image: url(' .esc_url( $banner[0] ). ');"></div>';
-                            }
+                            } else {
+								$placeholder = site_url()."/wp-content/uploads/2019/09/product-image-placeholder.jpg";
+								echo '<div class="post-item__photo" style="background-image: url('.$placeholder.');"></div>';
+							}
                             echo '<div class="post-item__text">';
                                 echo '<p class="title"><a href="' .esc_url( $vendor->get_shop_url() ). '">' .$vendor->get_shop_name(). '</a></p>';
                                 if( !empty( $description ) ) {

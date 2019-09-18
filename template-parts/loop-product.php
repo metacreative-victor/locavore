@@ -20,14 +20,25 @@ $price_html = $p->get_price_html();
                 echo '</a>';
             echo '</div>';
         }
-    }
+    } else {
+		$placeholder = site_url()."/wp-content/uploads/2019/09/product-image-placeholder.jpg";
+		echo '<div class="product-item-photo" style="background-image: url('.$placeholder.');">';
+                echo '<a href="' .get_permalink(). '" class="link">';
+                    if( !empty( $price_html ) ) {
+                        echo '<div class="price-ribbon">' .$price_html. '</div>';
+                    }
+                echo '</a>';
+            echo '</div>';
+	}
     ?>
     <p class="product-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
-    <?php
-    if( !empty( $description ) ) {
-        echo wpautop( $description );
-    }
-    ?>
+	<div class="description">
+		<?php
+		if( !empty( $description ) ) {
+			echo wpautop( $description );
+		}
+		?>
+	</div>
     <div class="product-item-button">
         <a href="#" class="button-primary button-quickview" data-id="<?php echo get_the_ID(); ?>"><?php _e('Info', 'meta'); ?></a>
         <a href="<?php echo esc_url( $p->add_to_cart_url() ); ?>" class="button-primary"><?php _e('Add to Basket', 'meta'); ?></a>
