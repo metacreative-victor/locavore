@@ -105,8 +105,5 @@
             }
         });
 
-        $('form.form-cart').on('submit', function(e) {
-            
-        });
     });
 })(jQuery);

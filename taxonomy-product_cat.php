@@ -6,7 +6,11 @@ get_header();
     <?php get_sidebar('shop'); ?>
     
     <div class="shop-content">
-        <h1 class="text-center"><?php single_term_title(); ?></h1>
+        <div class="shop-header">
+            <h1 class="text-center"><?php single_term_title(); ?></h1>
+            <?php woocommerce_catalog_ordering(); ?>
+        </div>
+
         <?php if( have_posts() ) : ?>
             <div class="row product-grid">
                 <?php while( have_posts() ) : the_post(); ?>
@@ -16,6 +20,8 @@ get_header();
                 <?php endwhile; ?>
             </div>
             <!-- .row -->
+            
+            <?php woocommerce_pagination(); ?>
         <?php endif; ?>
     </div>
     <!-- .shop-content -->

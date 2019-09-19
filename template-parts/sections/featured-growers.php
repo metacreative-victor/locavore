@@ -21,13 +21,18 @@ if( !defined( 'ABSPATH' ) ) {
                     echo '<div class="col-lg-6">';
                         echo '<div class="post-item inline">';
                             $banner_id = $vendor->get_banner_id();
+
+                            if( empty( $banner_id ) ) {
+                                $banner_id = get_field( 'placeholder_photo', 'option' );
+                            }
+                            
                             if( !empty( $banner_id ) ) {
                                 $banner = wp_get_attachment_image_src( $banner_id, 'large' );
-                                echo '<div class="post-item__photo" style="background-image: url(' .esc_url( $banner[0] ). ');"></div>';
-                            } else {
-								$placeholder = site_url()."/wp-content/uploads/2019/09/product-image-placeholder.jpg";
-								echo '<div class="post-item__photo" style="background-image: url('.$placeholder.');"></div>';
-							}
+                                if( $banner[0] ) {
+                                    echo '<div class="post-item__photo" style="background-image: url(' .esc_url( $banner[0] ). ');"></div>';
+                                }
+                            }
+                            
                             echo '<div class="post-item__text">';
                                 echo '<p class="title"><a href="' .esc_url( $vendor->get_shop_url() ). '">' .$vendor->get_shop_name(). '</a></p>';
 								echo '<p class="description">';

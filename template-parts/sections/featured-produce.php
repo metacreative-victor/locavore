@@ -13,7 +13,7 @@ $the_query = new WP_Query( $args );
 if( $the_query->have_posts() ) {
     echo '<section id="featured-produce" class="page-section">';
         echo '<div class="container">';
-            echo '<h2 class="section-heading text-center">Featured Fresh Produce</h2>';
+            echo '<h2 class="section-heading text-center">' .__('Featured Fresh Produce', 'meta'). '</h2>';
             echo '<div class="product-slider">';
                 while( $the_query->have_posts() ) {
                     $the_query->the_post();
@@ -27,7 +27,7 @@ if( $the_query->have_posts() ) {
         echo '</div><!-- container -->';
         
         if( is_front_page() ) {
-            echo '<a href="#" class="button-primary button-wide">View All</a>';
+            echo '<a href="#" class="button-primary button-wide">' .__('View All', 'meta'). '</a>';
         }
     echo '</section><!-- #featured-produce -->';
 }
