@@ -1336,6 +1336,11 @@ body.single-post #featured-produce .container {
   position: relative;
 }
 
+.shop-header p {
+  font-family: 'Copse', serif;
+  font-size: 18px;
+}
+
 .shop-header form.woocommerce-ordering {
   float: none;
   margin: 0px 0px 20px;
@@ -2230,4 +2235,12 @@ body.woocommerce-cart div.woocommerce div.cart-collaterals div.cross-sells {
 		margin-left: 0;
 		margin-right: 25px;
 	}
+}
+
+body.dokan-dashboard {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.search-term {
+	color: #668f66;
 }

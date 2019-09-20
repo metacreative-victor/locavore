@@ -45,8 +45,8 @@
 				}
 				?>
 
-				<a href="#" class="button-primary"><?php _e('Login', 'meta'); ?></a>
-				<a href="#" class="button-primary"><?php _e('Sell Your Produce', 'meta'); ?></a>
+				<a href="<?php echo esc_url( home_url('/') ); ?>my-account/" class="button-primary"><?php _e('Login', 'meta'); ?></a>
+				<a href="<?php echo esc_url( home_url('/') ); ?>local-produce" class="button-primary"><?php _e('Sell Your Produce', 'meta'); ?></a>
 			</div>
 			<!-- .header-menu -->
 

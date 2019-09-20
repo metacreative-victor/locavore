@@ -29,13 +29,13 @@ $price_html = $p->get_price_html();
     }
     ?>
     <p class="product-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
-	<div class="description">
+	<!--<div class="description">
 		<?php
-		if( !empty( $description ) ) {
+		/*if( !empty( $description ) ) {
 			echo wpautop( $description );
-		}
+		}*/
 		?>
-	</div>
+	</div>-->
     <div class="product-item-button">
         <a href="#" class="button-primary button-quickview" data-id="<?php echo get_the_ID(); ?>"><?php _e('Info', 'meta'); ?></a>
         <a href="<?php echo esc_url( $p->add_to_cart_url() ); ?>" class="button-primary"><?php _e('Add to Basket', 'meta'); ?></a>
