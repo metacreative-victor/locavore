@@ -15,6 +15,8 @@ get_header();
                     echo post_type_archive_title( '', false );
                 } elseif( is_tax() ) {
                     echo single_term_title( '', false );
+                } elseif( is_search() ) {
+                    echo __('Search', 'meta');
                 }
                 ?>
             </h1>
