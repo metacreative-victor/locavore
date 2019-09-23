@@ -44,6 +44,7 @@ function meta_styles() {
     wp_register_style( 'meta-plugins', META_THEME_URL . 'assets/css/plugins.min.css', array(), null, 'screen' );
     wp_register_style( 'meta-style', META_THEME_URL . 'assets/css/theme.css', array(), null, 'screen' );
 
+    wp_enqueue_script( 'dokan-vendor-registration' );
     wp_enqueue_style( 'meta-plugins' );
     wp_enqueue_style( 'meta-style' );
 }
@@ -107,6 +108,32 @@ function sen_woocommerce_add_to_cart_fragments( $fragments ) {
     return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'sen_woocommerce_add_to_cart_fragments' );
+
+function sen_woocommerce_catalog_orderby( $sortby ) {
+    $sortby['alphabetical'] = 'Sort by name: alphabetical';
+    return $sortby;
+}
+add_filter( 'woocommerce_catalog_orderby', 'sen_woocommerce_catalog_orderby' );
+
+function sen_woocommerce_get_catalog_ordering_args( $sort_args ) {
+    $orderby_value = isset( $_GET['orderby'] ) ? woocommerce_clean( $_GET['orderby'] ) : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby' ) );
+
+    if( 'alphabetical' == $orderby_value ) {
+        $sort_args['orderby'] = 'title';
+        $sort_args['order'] = 'asc';
+        $sort_args['meta_key'] = '';
+    }
+
+    return $sort_args;
+}
+add_filter( 'woocommerce_get_catalog_ordering_args', 'sen_woocommerce_get_catalog_ordering_args' );
+
+function sen_woocommerce_default_catalog_orderby( $default_orderby ) {
+    return 'alphabetical';
+}
+add_filter( 'woocommerce_default_catalog_orderby', 'sen_woocommerce_default_catalog_orderby' );
+
+add_filter( 'gform_confirmation_anchor', '__return_false' );
 // END FILTERS
 
 // HELPERS
@@ -224,18 +251,5 @@ function wp12232_render_bank_html( $store_settings ) {
     <?php
 }
 
-//Add Alphabetical sorting option to shop page / WC Product Settings
-function sv_alphabetical_woocommerce_shop_ordering( $sort_args ) {
-  $orderby_value = isset( $_GET['orderby'] ) ? woocommerce_clean( $_GET['orderby'] ) : apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby' ) );
- 
-    if ( 'alphabetical' == $orderby_value ) {
-        $sort_args['orderby'] = 'title';
-        $sort_args['order'] = 'asc';
-        $sort_args['meta_key'] = '';
-    }
- 
-    return $sort_args;
-}
-add_filter( 'woocommerce_get_catalog_ordering_args', 'sv_alphabetical_woocommerce_shop_ordering' );
 
 // END HELPERS

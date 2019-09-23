@@ -105,5 +105,6 @@
             }
         });
 
+        $('div.seller-reg-form input[name="role"][value="seller"]').prop( 'checked', true );
     });
 })(jQuery);

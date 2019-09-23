@@ -8,6 +8,11 @@ get_header();
     <div class="shop-content">
         <div class="shop-header">
             <h1 class="text-center"><?php _e('Local Produce', 'meta'); ?></h1>
+            <?php
+            if( is_search() ) {
+                echo '<p>' .sprintf( __( 'Search Results for: %s', 'meta' ), '<span class="search-term">' . get_search_query() . '</span>' ). '</p>';
+            }
+            ?>
             <?php woocommerce_catalog_ordering(); ?>
         </div>
         <?php

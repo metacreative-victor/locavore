@@ -28,6 +28,10 @@ get_header();
                         if( $thumbnail[0] ) {
                             echo '<div class="single-product__photo" style="background-image: url(' .esc_url( $thumbnail[0] ). ');">';
                                 echo '<a href="' .esc_url( $thumbnail[0] ). '" class="zoom"></a>';
+                                if( $product->is_in_stock() ) {
+                                    $stock_quantity = sprintf( _nx( '%s product left', '%s products left', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                    echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
+                                }
                             echo '</div>';
                         }
                     }

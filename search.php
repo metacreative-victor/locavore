@@ -8,7 +8,7 @@ get_header();
     <div class="shop-content">
         <div class="shop-header">
             <h1 class="text-center"><?php _e('Local Produce', 'meta'); ?></h1>
-            <p><?php printf( __( 'Search Results for: %s', 'meta' ), '<span>' . get_search_query() . '</span>' ); ?></p>
+            <p><?php printf( __( 'Search Results for: %s', 'meta' ), '<span class="search-term">' . get_search_query() . '</span>' ); ?></p>
             
         </div>
         <?php

@@ -5,7 +5,9 @@
 	$terms = get_terms( array(
 		'taxonomy' => 'product_cat',
 		'hide_empty' => false,
-		'exclude' => array( 15 )
+		'exclude' => array( 15 ),
+		'orderby' => 'title',
+		'order' => 'ASC'
 	));
 
 	if( !empty( $terms ) ) {

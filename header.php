@@ -61,6 +61,7 @@
 	<!-- NAVIGATION -->
 	<nav id="site-navigation">
 		<form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<input type="hidden" name="post_type" value="product">
 			<input type="search" placeholder="<?php echo esc_attr_x( 'Search local produce...', 'placeholder', 'meta' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
 		</form>
 

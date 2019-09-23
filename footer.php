@@ -8,9 +8,8 @@ $pinterest_url = get_field( 'pinterest_url', 'option' );
     <div class="container">
         <div class="row">
 			<div class="col-md-4">
-				<div class="map-canvas">
-					<img src="http://metastage.com.au/nvls/wp-content/uploads/2019/09/map-photo.png" alt="map">
-				</div>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3406.114106368962!2d116.09283541455126!3d-31.38341708141512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2bcd3fa40b04406f%3A0x8deb9ef479667b07!2sNorthern%20Valleys%20Locavore%20Store!5e0!3m2!1sen!2s!4v1568899763265!5m2!1sen!2s" width="340" height="225" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+				<!--<div id="map_canvas"></div>-->
 			</div>
 			<div class="col-md-5">
 				<?php if( !empty( $facebook_url ) || !empty( $instagram_url ) || !empty( $pinterest_url ) ) { ?>
@@ -51,10 +50,10 @@ $pinterest_url = get_field( 'pinterest_url', 'option' );
 		<!-- .row -->
 		<div class="row copyright">
 			<div class="col-md-6">
-				<p>&copy; <?php echo date('Y'); ?> Northern Valley Locavore Store. <a href="#">Privacy Policy</a>.</p>
+				<p>&copy; <?php echo date('Y'); ?> Northern Valley Locavore Store. <a href="<?php echo get_permalink(335);?>">Privacy Policy</a>.</p>
 			</div>
 			<div class="col-md-6 text-right">
-				<a href="#">Website by <a href="http://metacreative.com.au/" target="_blanl">Meta Creative</a></a>
+				<a href="#">Website by <a href="http://metacreative.com.au/" target="_blank">Meta Creative</a></a>
 			</div>
 		</div>
 	</div>
@@ -85,5 +84,47 @@ if( !empty( $tracking_code ) ) {
     echo $tracking_code;
 }
 ?>
+
+<?php
+$google_maps_api = get_field( 'google_maps_api', 'option' );
+$latitude = get_field( 'latitude', 'option' );
+$longitude = get_field( 'longitude', 'option' );
+
+if( !empty( $google_maps_api ) && !empty( $latitude ) && !empty( $longitude ) ) :
+?>
+<!-- GOOGLE MAPS -->
+<script>
+function initMap() {
+    var isDraggable = window.innerWidth > 767 ? true : false;
+
+    // Google Maps loader
+    google.maps.event.addDomListener(window, 'load', init);
+    function init() {
+        var map = new google.maps.Map(document.getElementById('map_canvas'), {
+            zoom: 16,
+            center: new google.maps.LatLng( '<?php echo $latitude; ?>', '<?php echo $longitude; ?>' ),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+            disableDefaultUI: true,
+            scrollwheel: false,
+            zoomControl: true,
+            navigationControl: false,
+            mapTypeControl: true,
+            scaleControl: true,
+            draggable: isDraggable,
+            styles: []
+        });
+
+        // create markers in google maps
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng( '<?php echo $latitude; ?>', '<?php echo $longitude; ?>' ),
+            map: map
+        });
+    }
+}
+</script>
+<script src="//maps.googleapis.com/maps/api/js?key=<?php echo $google_maps_api; ?>&callback=initMap" async="" defer="defer"></script>
+<!-- END GOOGLE MAPS -->
+<?php endif; ?>
 </body>
 </html>

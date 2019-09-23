@@ -26,4 +26,30 @@ function sen_register_post_type() {
 		'menu_icon' => 'dashicons-admin-post',
 		'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' )
 	));
+
+	register_post_type( 'grower', array(
+		'label' => __('Growers', 'sen'),
+		'public' => true,
+		'labels' => array(
+			'name' => __('Growers', 'sen'),
+			'singular_name' => __('Growers', 'sen'),
+			'add_new' => __('Add Grower', 'sen'),
+			'add_new_item' => __('Add Grower', 'sen'),
+			'edit_item' => __('Edit Grower', 'sen'),
+			'new_item' => __('New Grower', 'sen'),
+			'view_item' => __('View Grower', 'sen'),
+			'search_items' => __('Search Grower', 'sen'),
+			'not_found' =>  __('Not found Grower', 'sen'),
+			'not_found_in_trash' => __('Not found Growers in trash', 'sen')
+		),
+		'show_ui' => true, 
+		'query_var' => true,
+		'has_archive' => true,
+		'rewrite' => array('slug' => 'growers','with_front' => false),
+		'capability_type' => 'post',
+		'hierarchical' => false,
+		'menu_position' => 5,
+		'menu_icon' => 'dashicons-admin-post',
+		'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' )
+	));
 }

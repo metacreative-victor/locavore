@@ -23,6 +23,10 @@ $price_html = $p->get_price_html();
                     if( !empty( $price_html ) ) {
                         echo '<div class="price-ribbon">' .$price_html. '</div>';
                     }
+                    if( $p->is_in_stock() ) {
+                        $stock_quantity = sprintf( _nx( '%s product left', '%s products left', $p->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $p->get_stock_quantity() ) );
+                        echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
+                    }
                 echo '</a>';
             echo '</div>';       
         }
