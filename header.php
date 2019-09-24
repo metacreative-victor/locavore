@@ -44,9 +44,15 @@
 					));
 				}
 				?>
+				
+				<?php if (is_user_logged_in()) { ?>
+	<a href="<?php echo esc_url( home_url('/') ); ?>my-account/" class="button-primary"><?php _e('Dashboard', 'meta'); ?></a>
+<?php } else { ?>
+	<a href="<?php echo esc_url( home_url('/') ); ?>my-account/" class="button-primary"><?php _e('Login', 'meta'); ?></a>
+<?php } ?>
 
-				<a href="<?php echo esc_url( home_url('/') ); ?>my-account/" class="button-primary"><?php _e('Login', 'meta'); ?></a>
-				<a href="<?php echo esc_url( home_url('/') ); ?>local-produce" class="button-primary"><?php _e('Sell Your Produce', 'meta'); ?></a>
+				
+				<a href="<?php echo esc_url( home_url('/') ); ?>sell-your-produce" class="button-primary"><?php _e('Sell Your Produce', 'meta'); ?></a>
 			</div>
 			<!-- .header-menu -->
 

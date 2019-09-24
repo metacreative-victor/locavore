@@ -24,7 +24,7 @@ $price_html = $p->get_price_html();
                         echo '<div class="price-ribbon">' .$price_html. '</div>';
                     }
                     if( $p->is_in_stock() ) {
-                        $stock_quantity = sprintf( _nx( '%s product left', '%s products left', $p->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $p->get_stock_quantity() ) );
+                        $stock_quantity = sprintf( _nx( '%s in stock', '%s in stock', $p->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $p->get_stock_quantity() ) );
                         echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
                     }
                 echo '</a>';
@@ -33,13 +33,13 @@ $price_html = $p->get_price_html();
     }
     ?>
     <p class="product-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
-	<!--<div class="description">
+	<div class="description">
 		<?php
-		/*if( !empty( $description ) ) {
+		if( !empty( $description ) ) {
 			echo wpautop( $description );
-		}*/
+		}
 		?>
-	</div>-->
+	</div>
     <div class="product-item-button">
         <a href="#" class="button-primary button-quickview" data-id="<?php echo get_the_ID(); ?>"><?php _e('Info', 'meta'); ?></a>
         <a href="<?php echo esc_url( $p->add_to_cart_url() ); ?>" class="button-primary"><?php _e('Add to Basket', 'meta'); ?></a>

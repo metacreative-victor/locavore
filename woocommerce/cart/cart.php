@@ -162,6 +162,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
+<div class="pickup-note">
+	<p>*Local store pickup only. Delivery coming soon!</p>
+	<p>Pickup at our store:<br> <strong>29 Binda Place, Bindoon WA</strong></p>
+</div>
+
 <div class="cart-collaterals">
 	<?php
 		/**

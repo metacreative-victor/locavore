@@ -21,7 +21,7 @@ get_header();
 
             <h1 class="text-center"><?php the_title(); ?></h1>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <?php
                     if( has_post_thumbnail() ) {
                         $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
@@ -34,10 +34,22 @@ get_header();
                                 }
                             echo '</div>';
                         }
-                    }
+                    } else {
+						$thumbnail_id = get_field( 'placeholder_photo', 'option' );
+						$thumbnail = wp_get_attachment_image_src( $thumbnail_id, 'large' );
+						
+                        if( $thumbnail[0] ) {
+                            echo '<div class="single-product__photo" style="background-image: url(' .esc_url( $thumbnail[0] ). ');">';
+                                if( $product->is_in_stock() ) {
+                                    $stock_quantity = sprintf( _nx( '%s product left', '%s products left', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                    echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
+                                }
+                            echo '</div>';
+                        }
+					}
                     ?>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="price-ribbon large"><?php echo $product->get_price_html(); ?></div>
                     <?php
                     if( !empty( $description ) ) {
@@ -46,8 +58,13 @@ get_header();
                     ?>
                     
                     <div class="single-product__producer">
-                        <h3><?php _e('Producer', 'meta'); ?></h3>
-                        <p><?php echo $store->get_shop_name(); ?> <br><?php echo $store_address; ?></p>
+						<?php
+						global $product;
+    					$author = get_user_by('id', $product->post->post_author);
+						?>
+						<h3><?php _e('Producer', 'meta'); ?></h3>
+						<?php printf( '<p><a href="%s">%s</a></p>', dokan_get_store_url( $author->ID ), $store->get_shop_name() ); ?>
+
                     </div>
 
                     <div class="single-product__form">
@@ -65,7 +82,7 @@ get_header();
             </div>
             <!-- .row -->
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="single-product__ingredients">
                         <?php
                         if( !empty( $ingredients ) ) {
@@ -89,7 +106,7 @@ get_header();
                         <li><a href="javascript:void(0)" onclick="meta_sharing('<?php echo $pinterest_link; ?>')" class="pinterest"></a></li>
                     </ul>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <?php
                     $related_products = wc_get_related_products( $product_id, 2 );
                     

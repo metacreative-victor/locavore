@@ -251,5 +251,33 @@ function wp12232_render_bank_html( $store_settings ) {
     <?php
 }
 
+/* Update order notes field on Checkout page */
+function md_custom_woocommerce_checkout_fields( $fields ) 
+{
+    $fields['order']['order_comments']['placeholder'] = ' ';
+    $fields['order']['order_comments']['label'] = 'Add your note';
+
+    return $fields;
+}
+add_filter( 'woocommerce_checkout_fields', 'md_custom_woocommerce_checkout_fields' );
+
+/**
+ * Change the default state and country on the checkout page
+ */
+add_filter( 'default_checkout_billing_state', 'change_default_checkout_state' );
+function change_default_checkout_state() {
+  return 'WA'; // state code
+}
+
+
+add_filter('woocommerce_billing_fields','wpb_custom_billing_fields');
+// remove some fields from billing form
+// ref - https://docs.woothemes.com/document/tutorial-customising-checkout-fields-using-actions-and-filters/
+function wpb_custom_billing_fields( $fields = array() ) {
+	unset($fields['billing_address_1']);
+	unset($fields['billing_address_2']);
+	return $fields;
+}
+
 
 // END HELPERS
