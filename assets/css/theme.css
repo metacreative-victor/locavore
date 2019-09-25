@@ -699,6 +699,10 @@ form textarea,
   color: #fff;
 }
 
+.product-item span.inventory-ribbon.backorder {
+	background-color: rgba(000, 000, 000, 0.5);
+}
+
 .product-grid .col-lg-4 {
   padding-bottom: 40px;
 }
@@ -1553,6 +1557,10 @@ div.single-product__producer p a:hover {
   border-radius: 35px 0px 35px 0px;
   font-size: 13px;
   color: #fff;
+}
+
+.single-product__photo span.inventory-ribbon.backorder {
+	background-color: rgba(000,000,000,0.5);
 }
 
 .single-product__description {
@@ -2453,6 +2461,10 @@ tr.tax-total th small {
 
 .dokan-pagination-container .dokan-pagination li a {
 	color: #668f66 !important;
+}
+
+ul.dokan-store-info {
+	display: none !important;
 }
 
 div.profile-info-img.dummy-image {

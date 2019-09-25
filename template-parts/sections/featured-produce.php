@@ -17,10 +17,12 @@ if( $the_query->have_posts() ) {
             echo '<div class="product-slider">';
                 while( $the_query->have_posts() ) {
                     $the_query->the_post();
-
-                    echo '<div class="slide-item">';
-                        get_template_part( 'template-parts/loop', 'product' );
-                    echo '</div>';
+					$p = wc_get_product( get_the_ID() );
+					if( $p->is_in_stock() ) {
+						echo '<div class="slide-item">';
+							get_template_part( 'template-parts/loop', 'product' );
+						echo '</div>';
+					}
                 }
                 wp_reset_postdata();
             echo '</div><!-- .product-slider -->';

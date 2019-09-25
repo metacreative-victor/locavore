@@ -23,10 +23,16 @@ $price_html = $p->get_price_html();
                     if( !empty( $price_html ) ) {
                         echo '<div class="price-ribbon">' .$price_html. '</div>';
                     }
-                    if( $p->is_in_stock() ) {
-                        $stock_quantity = sprintf( _nx( '%s in stock', '%s in stock', $p->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $p->get_stock_quantity() ) );
+                    if( $p->is_in_stock() && $p->is_on_backorder( 1 )) {
+						$stock_quantity = sprintf( _nx( 'Backorder', 'Backorder', $p->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $p->get_stock_quantity() ) );
+                        echo '<span class="inventory-ribbon backorder">' .$stock_quantity. '</span>';
+                    } elseif( $p->is_in_stock() ){
+						$stock_quantity = sprintf( _nx( '%s in stock', '%s in stock', $p->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $p->get_stock_quantity() ) );
                         echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
-                    }
+					} else {
+						$stock_quantity = sprintf( _nx( '0 in stock', '0 in stock', $p->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $p->get_stock_quantity() ) );
+                        echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
+					}
                 echo '</a>';
             echo '</div>';       
         }

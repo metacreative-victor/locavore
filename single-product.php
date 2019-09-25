@@ -28,10 +28,16 @@ get_header();
                         if( $thumbnail[0] ) {
                             echo '<div class="single-product__photo" style="background-image: url(' .esc_url( $thumbnail[0] ). ');">';
                                 echo '<a href="' .esc_url( $thumbnail[0] ). '" class="zoom"></a>';
-                                if( $product->is_in_stock() ) {
-                                    $stock_quantity = sprintf( _nx( '%s product left', '%s products left', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                if( $product->is_in_stock() && $product->is_on_backorder( 1 ) ) {
+                                    $stock_quantity = sprintf( _nx( 'Backorder', 'Backorder', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                    echo '<span class="inventory-ribbon backorder">' .$stock_quantity. '</span>';
+                                } elseif ($product->is_in_stock()){
+									$stock_quantity = sprintf( _nx( '%s in stock', '%s in stock', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
                                     echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
-                                }
+								} else {
+									$stock_quantity = sprintf( _nx( '0 in stock', '0 in stock', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                    echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
+								}
                             echo '</div>';
                         }
                     } else {
@@ -40,10 +46,16 @@ get_header();
 						
                         if( $thumbnail[0] ) {
                             echo '<div class="single-product__photo" style="background-image: url(' .esc_url( $thumbnail[0] ). ');">';
-                                if( $product->is_in_stock() ) {
-                                    $stock_quantity = sprintf( _nx( '%s product left', '%s products left', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                if( $product->is_in_stock() && $product->is_on_backorder( 1 ) ) {
+                                    $stock_quantity = sprintf( _nx( 'Backorder', 'Backorder', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                    echo '<span class="inventory-ribbon backorder">' .$stock_quantity. '</span>';
+                                } elseif ($product->is_in_stock()){
+									$stock_quantity = sprintf( _nx( '%s in stock', '%s in stock', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
                                     echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
-                                }
+								} else {
+									$stock_quantity = sprintf( _nx( '0 in stock', '0 in stock', $product->get_stock_quantity(), 'stock quantity', 'meta' ), number_format_i18n( $product->get_stock_quantity() ) );
+                                    echo '<span class="inventory-ribbon">' .$stock_quantity. '</span>';
+								}
                             echo '</div>';
                         }
 					}
@@ -122,7 +134,13 @@ get_header();
                                         echo '<div class="list-product__photo" style="background-image: url(' .esc_url( $thumbnail[0] ). ');">';
                                             echo '<a href="' .get_permalink( $p ). '" class="list-product__link"></a>';
                                         echo '</div>';
-                                    }
+                                    } else {
+										$thumbnail_id = get_field( 'placeholder_photo', 'option' );
+										$thumbnail = wp_get_attachment_image_src( $thumbnail_id, 'large' );
+                                        echo '<div class="list-product__photo" style="background-image: url(' .esc_url( $thumbnail[0] ). ');">';
+                                            echo '<a href="' .get_permalink( $p ). '" class="list-product__link"></a>';
+                                        echo '</div>';
+									}
                                     echo '<div class="list-product__content">';
                                         echo '<p class="list-product__content-title"><a href="' .get_permalink( $p ). '">' .get_the_title( $p ). '</a></p>';
                                         echo '<p>' .__('Grower:', 'meta'). ' ' .$r_store->get_shop_name().'</p>';
